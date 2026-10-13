@@ -77,14 +77,15 @@ export default function AskPanel({ answer }) {
     return () => timers.forEach(clearTimeout)
   }, [run])
 
-  // Replay the run every minute while the tab is visible.
+  // Replay 5 seconds after each answer finishes, while the tab is visible.
   useEffect(() => {
-    if (reducedMotion()) return
-    const id = setInterval(() => {
+    if (phase !== 'done' || reducedMotion()) return
+    let id = setTimeout(function next() {
       if (document.visibilityState === 'visible') setRun((r) => r + 1)
-    }, 60_000)
-    return () => clearInterval(id)
-  }, [])
+      else id = setTimeout(next, 1000)
+    }, 5000)
+    return () => clearTimeout(id)
+  }, [phase])
 
   const showAnswer = phase === 'streaming' || phase === 'done'
 
