@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import EmbeddingField from './EmbeddingField.jsx'
+import AskPanel from './AskPanel.jsx'
 import { profile, stats, work, experience, skills, education, certifications, awards } from './data.js'
 
 function useReveal() {
@@ -93,39 +94,6 @@ function SectionHead({ index, title, kicker }) {
   )
 }
 
-// Streams text in word-by-word, like tokens arriving from a model.
-function TokenStream({ text, delay = 500, step = 70 }) {
-  const tokens = text.split(/(\s+)/)
-  const reduced =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const [count, setCount] = useState(reduced ? tokens.length : 0)
-
-  useEffect(() => {
-    if (reduced) return
-    let i = 0
-    let timer = setTimeout(function tick() {
-      i += 1
-      setCount(i)
-      if (i < tokens.length) timer = setTimeout(tick, step + Math.random() * 60)
-    }, delay)
-    return () => clearTimeout(timer)
-  }, [])
-
-  const done = count >= tokens.length
-  return (
-    <span className="stream" aria-label={text}>
-      <span aria-hidden="true">
-        {tokens.slice(0, count).map((t, i) => (
-          <span className="stream__tok" key={i}>
-            {t}
-          </span>
-        ))}
-        <span className={`stream__caret ${done ? 'stream__caret--done' : ''}`} />
-      </span>
-    </span>
-  )
-}
-
 function Hero() {
   return (
     <section className="hero" id="top">
@@ -139,14 +107,7 @@ function Hero() {
         <h1 className="hero__name">
           Alvi <em>Skariah</em> John
         </h1>
-        <div className="prompt">
-          <span className="prompt__label">
-            <span className="prompt__key">query</span> who is {profile.firstName.toLowerCase()}?
-          </span>
-          <p className="hero__headline">
-            <TokenStream text={profile.headline} />
-          </p>
-        </div>
+        <AskPanel answer={profile.headline} />
         <p className="hero__intro">{profile.intro}</p>
         <div className="hero__cta">
           <a className="btn btn--solid" href="#work">
