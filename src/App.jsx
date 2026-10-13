@@ -22,7 +22,17 @@ function useReveal() {
       { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
     )
     els.forEach((el) => io.observe(el))
-    return () => io.disconnect()
+
+    // Pick up elements mounted later (e.g. after a remount) so nothing stays hidden.
+    const mo = new MutationObserver(() => {
+      document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el))
+    })
+    mo.observe(document.getElementById('root'), { childList: true, subtree: true })
+
+    return () => {
+      io.disconnect()
+      mo.disconnect()
+    }
   }, [])
 }
 
