@@ -1,0 +1,12 @@
+node_modules
+dist
+.vercel
+.DS_Store
+*.local
+
+# Personal source documents (contain phone number) — keep out of the public repo
+*.docx
+Profile.pdf
+
+# Local editor/agent config
+.claude
