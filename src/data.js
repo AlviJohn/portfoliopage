@@ -9,7 +9,7 @@ export const profile = {
   titles: ['AI/ML Architect', 'Consultant', 'Product Manager'],
   headline: 'I turn tangled business problems into AI systems people actually use.',
   intro:
-    'For 14+ years I have worked across the whole arc of applied ML — decision scientist, management consultant, product developer and analytics practice head. Today I lead GenAI at HPE Operations, building platforms that read contracts, answer questions and quietly give teams their time back.',
+    'For 14+ years I have worked across the whole arc of applied ML — decision scientist, management consultant, product developer and analytics practice head. Today I lead GenAI product development at HPE, building platforms that read contracts, answer questions and quietly give teams their time back.',
   email: 'aalwiz09@gmail.com',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/alvi-skariah-john' },
