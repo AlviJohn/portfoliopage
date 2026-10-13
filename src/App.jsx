@@ -73,8 +73,8 @@ function Nav() {
           <span className="mark__dot" />
         </a>
         <nav className="nav__links" aria-label="Sections">
-          <a href="#work">Work</a>
           <a href="#experience">Experience</a>
+          <a href="#work">Work</a>
           <a href="#toolkit">Toolkit</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -155,7 +155,7 @@ function Work() {
     <section className="section" id="work">
       <div className="wrap">
         <SectionHead
-          index="01"
+          index="02"
           title="Selected work"
           kicker="Products and models that moved a number — from GenAI platforms to integer programs."
         />
@@ -195,7 +195,7 @@ function Experience() {
     <section className="section" id="experience">
       <div className="wrap">
         <SectionHead
-          index="02"
+          index="01"
           title="Experience"
           kicker="Decision scientist, consultant, product builder, practice head — in that order."
         />
@@ -334,15 +334,15 @@ export default function App() {
   useReveal()
   return (
     <>
-      <a className="skip" href="#work">
+      <a className="skip" href="#experience">
         Skip to content
       </a>
       <Nav />
       <main>
         <Hero />
         <Stats />
-        <Work />
         <Experience />
+        <Work />
         <Toolkit />
         <Contact />
       </main>
